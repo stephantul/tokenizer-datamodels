@@ -18,6 +18,7 @@ class DecoderType(str, Enum):
     REPLACE = "Replace"
     STRIP = "Strip"
     WORDPIECE = "WordPiece"
+    CUSTOM = "Custom"
 
 
 class BPEDecoder(BaseModel):
@@ -159,6 +160,13 @@ class WordPieceDecoder(BaseModel):
     type: Literal[DecoderType.WORDPIECE] = DecoderType.WORDPIECE
     prefix: str
     cleanup: bool
+
+
+class CustomDecoder(BaseModel):
+    """A custom decoder that can be used to define any custom decoding logic."""
+
+    type: Literal["CustomDecoder"] = "CustomDecoder"
+    import_function: str
 
 
 Decoder = (

@@ -23,6 +23,7 @@ class NormalizerType(str, Enum):
     STRIPACCENTS = "StripAccents"
     REPLACE = "Replace"
     PRECOMPILED = "Precompiled"
+    CUSTOM = "Custom"
 
 
 class NormalizerSequence(BaseModel):
@@ -175,6 +176,13 @@ class PrecompiledNormalizer(BaseModel):
 
     type: Literal[NormalizerType.PRECOMPILED] = NormalizerType.PRECOMPILED
     precompiled_charsmap: str
+
+
+class CustomNormalizer(BaseModel):
+    """A custom normalizer that can be used for custom normalization logic."""
+
+    type: Literal[NormalizerType.CUSTOM] = NormalizerType.CUSTOM
+    import_function: str
 
 
 Normalizer = (

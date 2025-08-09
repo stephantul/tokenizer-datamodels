@@ -21,6 +21,7 @@ class PreTokenizerType(str, Enum):
     WHITESPACESPLIT = "WhitespaceSplit"
     UNICODESCRIPTS = "UnicodeScripts"
     SEQUENCE = "Sequence"
+    CUSTOM = "Custom"
 
 
 class PretokenizerSequence(BaseModel):
@@ -84,6 +85,13 @@ class WhitespaceSplitPreTokenizer(BaseModel):
 
 class UnicodeScriptsPreTokenizer(BaseModel):
     type: Literal[PreTokenizerType.UNICODESCRIPTS] = PreTokenizerType.UNICODESCRIPTS
+
+
+class CustomPreTokenizer(BaseModel):
+    """A custom pretokenizer that can be used for custom pretokenization logic."""
+
+    type: Literal[PreTokenizerType.CUSTOM] = PreTokenizerType.CUSTOM
+    import_function: str
 
 
 PreTokenizer = (

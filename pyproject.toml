@@ -23,6 +23,7 @@ dev = [
     "pytest-coverage",
     "ruff",
 ]
+custom = ["huggingface-hub"]
 
 [tool.ruff]
 exclude = [".venv/"]
